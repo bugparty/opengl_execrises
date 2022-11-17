@@ -8,6 +8,7 @@
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
+float mixAlpha = 0.2f;
 std::string GetPath(const std::string& filename){
     std::filesystem::path path = std::filesystem::current_path() / filename;
     return path.string();
@@ -51,7 +52,7 @@ int main()
 
     // build and compile our shader zprogram
     // ------------------------------------
-    Shader ourShader("4.2.texture.vsh", "11texture.fsh");
+    Shader ourShader("4.2.texture.vsh", "14texture.fsh");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -170,9 +171,10 @@ int main()
         glBindTexture(GL_TEXTURE_2D, texture1);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, texture2);
-
+        ourShader.setFloat("mixAlpha", mixAlpha);
         // render container
         ourShader.use();
+
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
@@ -196,10 +198,26 @@ int main()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
+double lastClick=0.0;
+const float STEP=0.05f;
 void processInput(GLFWwindow *window)
 {
+    double curTime = glfwGetTime();
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+    if (curTime-lastClick<0.05)return;
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS){
+        if(mixAlpha+STEP < 1.0f)
+            mixAlpha+=STEP;
+        lastClick = curTime;
+    }
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
+        if(mixAlpha-STEP > 0.0f){
+            mixAlpha-=STEP;
+        }
+        lastClick = curTime;
+    }
+
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
