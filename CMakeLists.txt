@@ -54,3 +54,20 @@ target_include_directories(13texture_ex PRIVATE ${STB_INCLUDE_DIRS})
 add_executable(14texture_ex 14texture_ex.cpp std_image.cpp)
 target_link_libraries(14texture_ex PRIVATE glad::glad glfw)
 target_include_directories(14texture_ex PRIVATE ${STB_INCLUDE_DIRS})
+
+find_package(glm CONFIG REQUIRED)
+
+add_executable(15glm 15glm.cpp)
+target_link_libraries(15glm PRIVATE glm::glm)
+
+add_executable(16glm_texture 16glm_texture.cpp std_image.cpp)
+target_link_libraries(16glm_texture PRIVATE glad::glad glfw glm::glm)
+target_include_directories(16glm_texture PRIVATE ${STB_INCLUDE_DIRS})
+
+add_executable(17glm_texture_ex 17glm_texture_ex.cpp std_image.cpp)
+target_link_libraries(17glm_texture_ex PRIVATE glad::glad glfw glm::glm)
+target_include_directories(17glm_texture_ex PRIVATE ${STB_INCLUDE_DIRS})
+
+add_executable(18glm_texture_ex 18glm_texture_ex.cpp std_image.cpp)
+target_link_libraries(18glm_texture_ex PRIVATE glad::glad glfw glm::glm)
+target_include_directories(18glm_texture_ex PRIVATE ${STB_INCLUDE_DIRS})
