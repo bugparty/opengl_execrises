@@ -93,6 +93,11 @@ public:
     void setVec3(const std::string &name, float x,float y, float z){
         glUniform3f(glGetUniformLocation(ID, name.c_str()), x,y,z);
     }
+    void setMat4(const std::string &name, const glm::mat4 &mat4){
+        unsigned int loc = glGetUniformLocation(ID, name.c_str());
+        assert(loc != -1);
+        glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(mat4));
+    }
 
 private:
     // utility function for checking shader compilation/linking errors.

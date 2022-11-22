@@ -71,3 +71,15 @@ target_include_directories(17glm_texture_ex PRIVATE ${STB_INCLUDE_DIRS})
 add_executable(18glm_texture_ex 18glm_texture_ex.cpp std_image.cpp)
 target_link_libraries(18glm_texture_ex PRIVATE glad::glad glfw glm::glm)
 target_include_directories(18glm_texture_ex PRIVATE ${STB_INCLUDE_DIRS})
+
+add_executable(19coordinateSystem 19coordinateSystem.cpp std_image.cpp)
+target_link_libraries(19coordinateSystem PRIVATE glad::glad glfw glm::glm)
+target_include_directories(19coordinateSystem PRIVATE ${STB_INCLUDE_DIRS})
+
+add_executable(20coordinateSystemMoreCubes 20coordinateSystemMoreCubes.cpp std_image.cpp)
+target_link_libraries(20coordinateSystemMoreCubes PRIVATE glad::glad glfw glm::glm)
+target_include_directories(20coordinateSystemMoreCubes PRIVATE ${STB_INCLUDE_DIRS})
+
+add_executable(21coordinateSystemMoreCubes_ex 21coordinateSystemMoreCubes_ex.cpp std_image.cpp)
+target_link_libraries(21coordinateSystemMoreCubes_ex PRIVATE glad::glad glfw glm::glm)
+target_include_directories(21coordinateSystemMoreCubes_ex PRIVATE ${STB_INCLUDE_DIRS})
